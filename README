@@ -16,9 +16,9 @@ When using the monitor, also go to the apparatus3-analysis repository in
 Github, and install the qini folder.
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%% USAGE %%%%%%%%%%%%%%%%%%%%%%%%% 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% USAGE %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 The monitor script automatically and continuously detects the creation
 of the new .fit files when the camera takes new pictures. Then the
@@ -53,9 +53,9 @@ created in that data folder. In order to plot and fit, use the following
 command: 
 	$/lab/software/epd-7.0-1-rh5-x86/bin/python/lab/software/apparatus3/plotgui/viewdata_win.py
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%% EMT2-MONITOR HELPER OBJECTS %%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%% EMT2-MONITOR HELPER OBJECTS %%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 --- test:
 This folder contains two test bash scripts. The test1 continuously
@@ -71,9 +71,9 @@ at first. When the testing process is done, there will be.fit files,
 .out file(s), .INI file(s) in this folder, which is exactly the same as
 the emt2 data folder when .fit files come in.
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%% EXAMPLE %%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%% EXAMPLE %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 To see an example or to test the monitor package, first run the test2 to
 make sure that the example folder is in the initial condition. Go to the
@@ -87,4 +87,4 @@ The analysis results and other infomation that will be in the
 corresponding report file will be presented in the command window, and
 .fit files, .out files, and .INI files will be in the example folder
 this time. If the user wants to test the apparatus3-plotgui program,
-just type the last command above in the USAGE section.m
+just type the last command above in the USAGE section.
