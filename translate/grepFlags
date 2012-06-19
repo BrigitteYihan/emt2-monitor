@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [[ $1 == -h || $# -eq 0 ]]
+then
+	echo ""
+	echo "grepFlags:"
+	echo ""
+	echo "Given an out file, this script returns the flags of the shot"
+	echo ""
+	echo "usage: grepData [#####.out]"
+	echo ""
+	echo " Example:"
+	echo ""
+	echo " ./grepData #####.out"
+	exit 2
+fi
+
+
+grep \# $1 | grep analysis | awk ' NR == 1 {for (i=4; i<=(NF-1); i++) printf ("%s\t", $i); } END { printf ("\n") }'

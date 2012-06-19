@@ -1,0 +1,3 @@
+#!/bin/bash
+
+rm /home/yihan/monitor/example/*atoms*.fit /home/yihan/monitor/example/*.out /home/yihan/monitor/example/report*.INI

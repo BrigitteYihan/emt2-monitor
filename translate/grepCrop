@@ -1,0 +1,19 @@
+#!/bin/bash
+
+if [[ $1 == -h || $# -eq 0 ]]
+then
+	echo ""
+	echo "grepCrop:"
+	echo ""
+	echo "Given an out file, this script returns the 4 crop window values"
+	echo ""
+	echo "usage: grepCrop [#####.out]"
+	echo ""
+	echo " Example:"
+	echo ""
+	echo " ./grepCrop #####.out"
+	exit 2
+fi
+
+grep \# $1 | grep Crop | sed -re 's/^.+\[//' | sed 's/\].*//' | 
+             sed 's/\,//' | sed 's/\;//' | sed 's/\,//' 

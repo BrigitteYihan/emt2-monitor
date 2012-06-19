@@ -1,0 +1,3 @@
+#grep $1 $2 | awk '{print $3}' | sed 's/[A-Za-z]*//'
+#grep $1 $2 | grep $3 | awk '{print $3}' | sed 's/[A-Za-z]*//'
+echo $1 $2 | awk -f /home/yihan/monitor/grepQ.awk -v run=$1 -v file=$2 $2 | sed 's/[A-Za-z]*//' | tail -n 1

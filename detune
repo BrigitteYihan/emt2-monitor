@@ -1,0 +1,28 @@
+#!/bin/bash
+
+
+if [[ $1 == -h || $# -eq 0 ]]
+then 
+	echo ""
+	echo "  detune:"
+        echo ""
+	echo "  Given a shot number, this script returns the"
+	echo "  corresponding detune value"
+	echo ""
+	echo "  usage: detune [#####]"
+	echo ""
+	echo "  Example:"
+	echo ""
+	echo "  ./detune 54321  ==> 432.132"   
+	exit 2
+fi
+
+
+beat=623.5;
+
+m=`/home/yihan/monitor/grepOneShunt $1`;
+im=`echo $m |  awk '{shunt=$m; \
+     bshunt = 11.132 + 24.816 * shunt; \
+     im = 524.8 + 1.47 * (bshunt - 544.113514);print im}'`;
+detune=`echo $im | awk -vbeat=${beat} '{print (beat-$1)/5.9;}'`;
+echo $detune;

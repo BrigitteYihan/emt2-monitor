@@ -1,0 +1,27 @@
+#!/bin/bash
+
+if [[ $1 == -h || $# -eq 0 ]]
+then
+	echo ""
+	echo "grepData:"
+	echo ""
+	echo "Given an out file, this script returns the fit function, the parameters, the errors," 
+	echo "and the imaging type of the shot"
+	echo ""
+	echo "usage: grepData [#####.out]"
+	echo ""
+	echo " Example:"
+	echo ""
+	echo " ./grepData #####.out"
+	exit 2
+fi
+
+
+grep \# $1 | grep Crop | awk ' NR == 1 { for (i=10; i<=(NF-1); i++) printf ("%s", $i); } END {printf ("\n")}'
+grep \# $1 | grep x0 | grep -v '-' | sed 's/\#//' | sed 's/  //' 
+grep \# $* | grep x0 -A 1 | grep -v x0 | grep -v '\-\-' |\
+	sed 's/[a-zA-Z0-9_. ]*\:\# //' | sed 's/\# //'
+grep \# $1 | grep x0 | grep -v '-' | sed 's/\#//' | sed 's/  //' | sed 's/\# //' | awk 'NR == 1 {for (i=1; i<=NF; i++) printf ("%s\t",$i"_err"); } END {printf ("\n")}' 
+grep \# $1 | grep error | sed 's/\# //'
+grep \# $1 | grep Crop | awk 'NR == 1 {print $NF}'
+

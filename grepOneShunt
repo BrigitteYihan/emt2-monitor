@@ -1,0 +1,4 @@
+#!/bin/bash
+
+#grep $1 logFile* | tail -1 | sed 's///' | sed 's/  //' | awk '{print $1, $7}' | grep "$1 " | awk '{print $2}'
+grep $1 logFile* | awk '{print $1, $7}' | grep "$1 " | awk '{print $2}' | tail -1

@@ -1,0 +1,80 @@
+#!/bin/bash
+
+
+if [[ $1 == -h ]]
+then 
+	echo ""
+	echo "  monitor:"
+        echo ""
+	echo "  Whenever a new fit file is detected, this script creates a"
+	echo "  corresponding report file and runs the analysis"
+	echo ""
+	echo "  usage: monitor"
+	echo ""
+	echo "  Example:"
+	echo ""
+	echo "  ./detune monitor"   
+	exit 2
+fi
+
+lastfile="./atoms*.fit"
+while [ ! -f $lastfile ]
+do 
+	sleep 0.5
+	lastfile="./atoms*.fit"
+done
+
+last=`ls atoms*.fit | tail -n 1 | sed 's/atoms//'`
+lastfivedig=`echo $last | sed 's/\.fit//' | sed 's/\_.*//'`
+last=`/home/yihan/monitor/translate/4digits $last`
+newlastfivedig=`expr $lastfivedig - 1`
+lastfile="./atoms${newlastfivedig}*.fit"
+if [ ! -f $lastfile ]
+then 
+	echo ""
+	echo "This is the shot number detected: " $lastfivedig
+	detune=`/home/yihan/monitor/detune $lastfivedig`
+	q=`/home/yihan/monitor/grepQ $lastfivedig logFile*`
+	flags=`/home/yihan/monitor/sec.py /home/yihan/monitor/translate/analysis.INI FLAGS $last $detune`
+	echo ""
+	echo "The flags of this shot is: "
+	echo $flags "d:"$detune
+	echo ""
+	echo "The analysis of this shot is:"
+	/home/yihan/monitor/analysis $lastfivedig $flags -d $detune -q $q > $lastfivedig.out 2> /dev/null
+	cat $lastfivedig.out 
+	/home/yihan/monitor/translate/out2INI $lastfivedig.out
+	echo "---------------------------------------------------------------------------------------"
+fi
+
+
+last=`ls atoms*.fit | tail -n 1 | sed 's/atoms//'`
+lastfivedig=`echo $last | sed 's/\.fit//' | sed 's/\_.*//'`
+last=`/home/yihan/monitor/translate/4digits $last`
+while :
+do 
+	sleep 5
+	newlast=`ls atoms*.fit | tail -n 1 | sed 's/atoms//'`
+	newlast=`/home/yihan/monitor/translate/4digits $newlast`
+	while [ $newlast != $last ]	
+	do
+		lastfivedig=`expr $lastfivedig + 1`
+		echo ""
+		echo "This is the shot number detected: " $lastfivedig
+		last=`expr $last + 1`
+		detune=`/home/yihan/monitor/detune $lastfivedig`
+		q=`/home/yihan/monitor/grepQ $lastfivedig logFile*`
+		flags=`/home/yihan/monitor/sec.py /home/yihan/monitor/translate/analysis.INI FLAGS $last $detune`
+		echo ""
+		echo "The flags of this shot is: "
+		echo $flags "d:"$detune
+		echo ""
+		echo "The analysis of this shot is:"
+		/home/yihan/monitor/analysis $lastfivedig $flags -d $detune -q $q > $lastfivedig.out 2> /dev/null
+		cat $lastfivedig.out 
+		/home/yihan/monitor/translate/out2INI $lastfivedig.out
+		echo "---------------------------------------------------------------------------------------"
+		
+	done
+done
+

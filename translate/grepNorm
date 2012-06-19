@@ -1,0 +1,20 @@
+#!/bin/bash
+
+if [[ $1 == -h || $# -eq 0 ]]
+then
+	echo ""
+	echo "grepNorm:"
+	echo ""
+	echo "Given an out file, this script returns the normalization of the shot"
+	echo ""
+	echo "usage: grepNorm [#####.out]"
+	echo ""
+	echo " Example:"
+	echo ""
+	echo " ./grepNorm #####.out"
+	exit 2
+fi
+
+
+grep \# $1 | grep Normalization | sed -re 's/^.+N/N/' | sed 's/\:.*//'
+grep \# $1 | grep Normalization | sed -re 's/^.+\://' | awk '{print$1}'

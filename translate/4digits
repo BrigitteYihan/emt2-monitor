@@ -1,0 +1,33 @@
+#!/bin/bash
+
+
+if [[ $1 == -h || $# -eq 0 ]]
+then 
+	echo ""
+	echo "  4digits:"
+        echo ""
+	echo "  Given a file with shot number, this script returns a string"
+	echo "  with the 4 least significant digits of the shot number"
+	echo ""
+	echo "  usage: 4digits [#####.XXX]"
+	echo ""
+	echo "  Example:"
+	echo ""
+	echo "  ./4digits ###....4321.XXXXXX  ==> 4321"   
+	echo "  or "
+	echo "  ./4digits ###....4321_1.XXXXXX  ==> 4321"
+	exit 2
+fi
+
+var=${1%.*}
+underscore=${var:(-2):1}
+if [[ $underscore ==  "_" ]]
+then 
+	newvar=${1%_*}
+	digits=${newvar:(-4)}
+	echo $digits
+	else digits=${var:(-4)}
+	echo $digits
+fi
+
+
