@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cp /lab/data/emt2/2012/1205/120504/*atoms23344.fit /home/yihan/monitor/example
+cp /lab/data/emt2/2012/1206/120619/*atoms25244.fit /home/yihan/monitor/example
 sleep 10
-cp /lab/data/emt2/2012/1205/120504/*atoms23345.fit /home/yihan/monitor/example
+cp /lab/data/emt2/2012/1206/120619/*atoms25245.fit /home/yihan/monitor/example
 sleep 10
-cp /lab/data/emt2/2012/1205/120504/*atoms23346.fit /home/yihan/monitor/example
+cp /lab/data/emt2/2012/1206/120619/*atoms25246.fit /home/yihan/monitor/example

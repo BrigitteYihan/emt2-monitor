@@ -19,7 +19,6 @@ def write_sec_to_ini(section, shotnum, section_name):
   report = ConfigObj(filename)
   report[section_name] = {}
   for key in section:
-    print "%s:%s" % ( key, section[key])
     report[section_name][key] = section[key]
   report.write() 
 
@@ -42,5 +41,6 @@ if __name__ == "__main__":
   args = parser.parse_args()
 
   flagstring, section =  get_flags(args.FILE, args.SEC)
+  print flagstring
   write_sec_to_ini( section, args.SHOT, 'FLAGS') 
   write_to_ini( args.SHOT, 'FLAGS', 'd', args.DETUNE)

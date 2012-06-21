@@ -49,9 +49,10 @@ command:
 When the .fit file comes in, the shot number, the flags, the analysis
 results, and the contents in the report file will be presented on the
 command window, and the corresponding .out file and report file will be
-created in that data folder. In order to plot and fit, use the following
-command: 
-	$/lab/software/epd-7.0-1-rh5-x86/bin/python/lab/software/apparatus3/plotgui/viewdata_win.py
+created in that data folder. In order to plot and fit, go to the directory:
+        /lab/software/apparatus3/plotgui 
+and use the following command:
+        $/lab/software/epd-7.0-1-rh5-x86/bin/python /lab/software/apparatus3/plotgui/viewdata_win.py
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%% EMT2-MONITOR HELPER OBJECTS %%%%%%%%%%%%%%%%%

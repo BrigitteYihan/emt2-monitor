@@ -21,14 +21,11 @@ fi
 
 shot=`/home/yihan/monitor/translate/4digits $1`
 shotfivedig=`echo $1 | sed 's/\.out//'`
-echo "wini $shot SEQ:shot $shotfivedig"
-wini $shot SEQ:shot $shot
+/lab/software/apparatus3/cpp/qini/wini $shot SEQ:shot $shot
 fitfun=`/home/yihan/monitor/translate/grepData $1 | awk 'NR ==1 {print}'`
-echo "wini $shot OUT:fitfun $fitfun"
-wini $shot OUT:fitfun $fitfun
+/lab/software/apparatus3/cpp/qini/wini $shot OUT:fitfun $fitfun
 imaging=`/home/yihan/monitor/translate/grepData $1 | awk 'NR == 6 {print}'`
-echo "wini $shot OUT:imaging $imaging"
-wini $shot OUT:imaging "$imaging"
+/lab/software/apparatus3/cpp/qini/wini $shot OUT:imaging "$imaging"
 
 nfields=`/home/yihan/monitor/translate/grepData $1 | awk 'NR == 2 { print NF}'`
 
@@ -36,8 +33,7 @@ for (( i = 2; i<=$nfields; i++))
 do
 	key=`/home/yihan/monitor/translate/grepData $1 | awk -v field=$i 'NR == 2 { print $field}'`
 	value=`/home/yihan/monitor/translate/grepData $1 | awk -v field=$i 'NR == 3 { print $field}'`
-	echo "wini $shot OUT:$key $value"
-	wini `/home/yihan/monitor/translate/4digits $1`  OUT:$key $value
+	/lab/software/apparatus3/cpp/qini/wini `/home/yihan/monitor/translate/4digits $1`  OUT:$key $value
 done
 
 nfields_err=`/home/yihan/monitor/translate/grepData $1 | awk 'NR == 5 {print NF}'` 
@@ -46,8 +42,7 @@ for (( i = 2; i<=$nfields_err; i++))
 do
 	key_err=`/home/yihan/monitor/translate/grepData $1 | awk -v field=$i 'NR == 4 {print $field}'`
 	value_err=`/home/yihan/monitor/translate/grepData $1 | awk -v field=$i 'NR == 5 {print $field}'`
-	echo "wini $shot OUT:$key_err $value_err"
-	wini $shot OUT:$key_err $value_err
+	/lab/software/apparatus3/cpp/qini/wini $shot OUT:$key_err $value_err
 done
 
 #echo "nfields = $nfields"
@@ -57,20 +52,14 @@ x0=`/home/yihan/monitor/translate/grepCrop $1 | awk '{print$1}'`
 x1=`/home/yihan/monitor/translate/grepCrop $1 | awk '{print$2}'`
 y0=`/home/yihan/monitor/translate/grepCrop $1 | awk '{print$3}'`
 y1=`/home/yihan/monitor/translate/grepCrop $1 | awk '{print$4}'`
-echo "wini $shot CROPWIN:x0 $x0"
-wini $shot CROPWIN:x0 $x0
-echo "wini $shot CROPWIN:x1 $x1"
-wini $shot CROPWIN:x1 $x1
-echo "wini $shot CROPWIN:y0 $y0"
-wini $shot CROPWIN:y0 $y0
-echo "wini $shot CROPWIN:y1 $y1"
-wini $shot CROPWIN:y1 $y1
+/lab/software/apparatus3/cpp/qini/wini $shot CROPWIN:x0 $x0
+/lab/software/apparatus3/cpp/qini/wini $shot CROPWIN:x1 $x1
+/lab/software/apparatus3/cpp/qini/wini $shot CROPWIN:y0 $y0
+/lab/software/apparatus3/cpp/qini/wini $shot CROPWIN:y1 $y1
 
 norm=`/home/yihan/monitor/translate/grepNorm $1 | awk 'NR == 1 {print$1}'`
 normvar=`/home/yihan/monitor/translate/grepNorm $1 | awk 'NR == 2 {print$1}'` 
-echo "wini $shot NORM:$norm $normvar"
-wini $shot NORM:$norm $normvar
+/lab/software/apparatus3/cpp/qini/wini $shot NORM:$norm $normvar
 
 flags=`/home/yihan/monitor/translate/grepFlags $1`
-echo "wini $shot FLAGS:flagsstr $flags"
-wini $shot FLAGS:flagsstr "$flags"
+/lab/software/apparatus3/cpp/qini/wini $shot FLAGS:flagsstr "$flags"

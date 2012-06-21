@@ -33,7 +33,8 @@ if [ ! -f $lastfile ]
 then 
 	echo ""
 	echo "This is the shot number detected: " $lastfivedig
-	detune=`/home/yihan/monitor/detune $lastfivedig`
+	#detune=`/home/yihan/monitor/detune $lastfivedig`
+	detune=3.9
 	q=`/home/yihan/monitor/grepQ $lastfivedig logFile*`
 	flags=`/home/yihan/monitor/sec.py /home/yihan/monitor/translate/analysis.INI FLAGS $last $detune`
 	echo ""
@@ -42,7 +43,7 @@ then
 	echo ""
 	echo "The analysis of this shot is:"
 	/home/yihan/monitor/analysis $lastfivedig $flags -d $detune -q $q > $lastfivedig.out 2> /dev/null
-	cat $lastfivedig.out 
+	cat $lastfivedig.out | grep \# | awk ' NR <= 5 {print}'
 	/home/yihan/monitor/translate/out2INI $lastfivedig.out
 	echo "---------------------------------------------------------------------------------------"
 fi
@@ -62,7 +63,8 @@ do
 		echo ""
 		echo "This is the shot number detected: " $lastfivedig
 		last=`expr $last + 1`
-		detune=`/home/yihan/monitor/detune $lastfivedig`
+		#detune=`/home/yihan/monitor/detune $lastfivedig`
+		detune=3.9
 		q=`/home/yihan/monitor/grepQ $lastfivedig logFile*`
 		flags=`/home/yihan/monitor/sec.py /home/yihan/monitor/translate/analysis.INI FLAGS $last $detune`
 		echo ""
@@ -71,10 +73,9 @@ do
 		echo ""
 		echo "The analysis of this shot is:"
 		/home/yihan/monitor/analysis $lastfivedig $flags -d $detune -q $q > $lastfivedig.out 2> /dev/null
-		cat $lastfivedig.out 
+		cat $lastfivedig.out | grep \# | awk ' NR <= 5 {print}'
 		/home/yihan/monitor/translate/out2INI $lastfivedig.out
 		echo "---------------------------------------------------------------------------------------"
-		
 	done
 done
 
